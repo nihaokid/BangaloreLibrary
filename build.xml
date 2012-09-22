@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="junit" name="Create Runnable Jar for Project BangaloreLibrary">
+
+	<property name="src.dir"  value="src"/>
+	<property name="test.dir" value="test"/>
+	<property name="bin.dir" value="out"/>
+	<property name="lib.dir"  value="lib"/>
+	<property name="bangalore_library_jar" value="BangaloreLibrary.jar"/>
+	<property name="test.xml" value="xml"></property>
+	<property name="test.report" value="report"></property>
+	
+	<path id="lib_classpath">         
+    	     <fileset dir="${lib.dir}">
+    	        <include name="*.jar"/> 
+    	     </fileset>       
+	</path>
+	
+	<target name="init">
+		<mkdir dir="${bin.dir}"/>  
+		<delete dir="${test.report}"/> 
+		<mkdir dir="${test.report}"/> 
+		<delete dir="${test.xml}"/> 
+        <mkdir dir="${test.xml}"/>   
+	</target>
+	
+	<target name="compile" depends="init">
+        	<javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false">
+				<classpath refid="lib_classpath"/>
+        	</javac>
+
+			<javac srcdir="${test.dir}" destdir="${bin.dir}" includeantruntime="false">
+	        	  <classpath refid="lib_classpath"/>
+	        </javac>
+        </target>
+	
+	<target name="build" depends="compile">
+		<jar jarfile="${bangalore_library_jar}" basedir="${bin.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="com.thoughtworks.wzhai.LibraryContext"/>
+				<attribute name="Class-Path" value="."/>
+			</manifest>
+        </jar>
+	</target>
+
+	<target name="junit" depends="build">
+		<junit printsummary="false">
+			<classpath path="${bin.dir}">
+				<pathelement location="${lib.dir}/junit-4.10.jar"/>
+				<pathelement location="${bangalore_library_jar}"/>
+			</classpath> 
+
+			<formatter type="xml"/>
+			<batchtest todir="${test.xml}">
+				<fileset dir="${bin.dir}">
+					<include name="*/*/*/*/*Test.class"/>
+					<include name="*/*/*/*Test.class"/>
+				</fileset>
+			</batchtest>
+		</junit> 
+
+		<junitreport todir="${test.xml}">
+			<fileset dir="${test.xml}">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${test.report}"/>
+		</junitreport>
+		</target>
+</project>

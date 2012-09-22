@@ -8,12 +8,12 @@ import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class LibraryContent {
+public class LibraryContext {
     private Library library;
     private Map<String,Command> commandMap;
     private BufferedReader bufferRead;
 
-    public LibraryContent()
+    public LibraryContext()
     {
         library = new Library();
         commandMap = new LinkedHashMap<String,Command>();
@@ -54,7 +54,7 @@ public class LibraryContent {
     }
 
     private void runCommand() throws IOException {
-        System.out.print(">>>");
+        System.out.print("Library-:>");
         String command = bufferRead.readLine();
         String[] commands = command.split(" ");
         if(commandMap.containsKey(commands[0]))
@@ -73,6 +73,6 @@ public class LibraryContent {
     }
 
     public static void main(String[] asd) throws IOException {
-        new LibraryContent().play();
+        new LibraryContext().play();
     }
 }

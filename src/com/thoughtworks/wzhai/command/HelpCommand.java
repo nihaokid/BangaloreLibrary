@@ -1,15 +1,12 @@
 package com.thoughtworks.wzhai.command;
 
-import com.thoughtworks.wzhai.LibraryContent;
+import com.thoughtworks.wzhai.LibraryContext;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class HelpCommand extends Command {
-    LibraryContent libraryContent;
-    public HelpCommand(LibraryContent libraryContent) {
+    LibraryContext libraryContent;
+    public HelpCommand(LibraryContext libraryContent) {
         super("help");
         this.libraryContent = libraryContent;
     }

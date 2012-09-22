@@ -26,7 +26,7 @@ public class LibraryContentTest {
     }
     @Test
     public void testShowMessage(){
-        LibraryContent libraryContent = new LibraryContent();
+        LibraryContext libraryContent = new LibraryContext();
         libraryContent.showWelcomeMessage();
         assertThat(outContent.toString(), is("Welcome guys!!!\n"));
     }
@@ -34,13 +34,13 @@ public class LibraryContentTest {
     @Test
     public void testShowMenuOptions()
     {
-        LibraryContent libraryContent = new LibraryContent();
+        LibraryContext libraryContent = new LibraryContext();
         libraryContent.showMenuOptions();
         assertThat(outContent.toString(),is(
                 "showbook\tshowbook a book list of Bangalore Library\n" +
                         "reserve\treserve book from Bangalore Library\n" +
                         "help\tshow usage of command\n" +
-                        "exit\tnull\n"
+                        "exit\trun exit can exit the application\n"
         ));
     }
 

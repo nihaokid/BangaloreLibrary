@@ -12,7 +12,7 @@ public class ExitCommand extends Command {
 
     @Override
     public String getDescription() {
-        return null;
+        return "run exit can exit the application";
     }
 
     @Override
