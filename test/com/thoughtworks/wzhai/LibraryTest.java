@@ -54,5 +54,21 @@ public class LibraryTest {
         assertThat(library.getBookName("abc"),is(nullValue()));
     }
 
+    @Test
+    public void testShowMovieList()
+    {
+        Library library = new Library();
+        library.showMovieList();
+        assertThat(outContent.toString(),is("Movie\tYear\tDirector\tRating\n"+
+                "Hobbit 3\t2014\tPeter Jackson\tN/A\n"+
+                "Jack Ryan\t2013\tKenneth Branagh\tN/A\n"+
+                "TED 2\t2014\tSeth MacFarlane\tN/A\n"+
+                "Safe Haven\t2013\tLasse Hallstrom\tN/A\n"+
+                "Frozen\t2013\tChris Buck\tN/A\n"+
+                "Amazing Spider-Man 3\t2016\tMarc Webb\tN/A\n"+
+                "Hummingbird\t2013\tSteven Knight\tN/A\n"
+                ));
+    }
+
 
 }

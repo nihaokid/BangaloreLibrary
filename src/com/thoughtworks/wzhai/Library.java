@@ -7,11 +7,11 @@ import java.util.Map;
 public class Library {
     private Map<String, String> booksName;
     private Map<String, Integer> books;
+    private Map<String,Movie> movies;
 
     public Library() {
-        booksName = new LinkedHashMap<String, String>();
-        books = new HashMap<String, Integer>();
         initBooks();
+        initMovies();
     }
 
     public boolean reserveBook(String bookCode) {
@@ -40,6 +40,8 @@ public class Library {
     }
 
     private void initBooks() {
+        books = new HashMap<String, Integer>();
+        booksName = new LinkedHashMap<String, String>();
         booksName.put("1","java");
         booksName.put("2","ruby");
         booksName.put("3","c");
@@ -51,4 +53,36 @@ public class Library {
         }
     }
 
+    private void initMovies()
+    {
+        movies = new LinkedHashMap<String, Movie>();
+        Movie movie1 = new MovieBuilder().withMovieCode(generateMovieCode()).withName("Hobbit 3").withYear("2014").withDirector("Peter Jackson").create();
+        movies.put(movie1.getMovieCode(),movie1);
+        Movie movie2 = new MovieBuilder().withMovieCode(generateMovieCode()).withName("Jack Ryan").withYear("2013").withDirector("Kenneth Branagh").create();
+        movies.put(movie2.getMovieCode(),movie2);
+        Movie movie3 = new MovieBuilder().withMovieCode(generateMovieCode()).withName("TED 2").withYear("2014").withDirector("Seth MacFarlane").create();
+        movies.put(movie3.getMovieCode(),movie3);
+        Movie movie4 = new MovieBuilder().withMovieCode(generateMovieCode()).withName("Safe Haven").withYear("2013").withDirector("Lasse Hallstrom").create();
+        Movie movie5 = new MovieBuilder().withMovieCode(generateMovieCode()).withName("Frozen").withYear("2013").withDirector("Chris Buck").create();
+        Movie movie6 = new MovieBuilder().withMovieCode(generateMovieCode()).withName("Amazing Spider-Man 3").withYear("2016").withDirector("Marc Webb").create();
+        Movie movie7 = new MovieBuilder().withMovieCode(generateMovieCode()).withName("Hummingbird").withYear("2013").withDirector("Steven Knight").create();
+        movies.put(movie4.getMovieCode(),movie4);
+        movies.put(movie5.getMovieCode(),movie5);
+        movies.put(movie6.getMovieCode(),movie6);
+        movies.put(movie7.getMovieCode(),movie7);
+    }
+
+    private int movieCode = 1;
+    private String generateMovieCode()
+    {
+        return String.valueOf(movieCode++);
+    }
+
+    public void showMovieList() {
+        System.out.println("Movie\tYear\tDirector\tRating");
+        for(Movie movie:movies.values())
+        {
+            movie.print();
+        }
+    }
 }

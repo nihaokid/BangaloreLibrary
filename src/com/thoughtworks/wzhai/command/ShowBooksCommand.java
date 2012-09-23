@@ -8,7 +8,7 @@ public class ShowBooksCommand extends Command{
 
     public ShowBooksCommand(Library library)
     {
-        super("showbook");
+        super("showbooks");
         this.library = library;
     }
 
@@ -19,11 +19,11 @@ public class ShowBooksCommand extends Command{
 
     @Override
     public String getDescription() {
-        return "showbook a book list of Bangalore Library";  //To change body of implemented methods use File | Settings | File Templates.
+        return "showbooks a book list of Bangalore Library";
     }
 
     @Override
     public String getUsage() {
-        return "showbook    ---will show a book list of the library--- ";
+        return "showbooks    ---will show a book list of the library--- ";
     }
 }

@@ -37,8 +37,9 @@ public class LibraryContentTest {
         LibraryContext libraryContent = new LibraryContext();
         libraryContent.showMenuOptions();
         assertThat(outContent.toString(),is(
-                "showbook\tshowbook a book list of Bangalore Library\n" +
+                "showbooks\tshowbooks a book list of Bangalore Library\n" +
                         "reserve\treserve book from Bangalore Library\n" +
+                        "showmovies\tshowmovies a movie list of Bangalore Library\n"+
                         "help\tshow usage of command\n" +
                         "exit\trun exit can exit the application\n"
         ));

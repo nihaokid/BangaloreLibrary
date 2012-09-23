@@ -49,12 +49,13 @@ public class LibraryContext {
     {
         addCommand(new ShowBooksCommand(library));
         addCommand(new ReserveBookCommand(library));
+        addCommand(new ShowMoviesCommand(library));
         addCommand(new HelpCommand(this));
         addCommand(new ExitCommand());
     }
 
     private void runCommand() throws IOException {
-        System.out.print("Library-:>");
+        System.out.print("Library->");
         String command = bufferRead.readLine();
         String[] commands = command.split(" ");
         if(commandMap.containsKey(commands[0]))
