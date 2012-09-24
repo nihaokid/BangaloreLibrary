@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.thoughtworks.wzhai.tool.PrintFormat.formatTab;
+
 public class LibraryContext {
     private Library library;
     private Map<String,Command> commandMap;
@@ -28,7 +30,7 @@ public class LibraryContext {
     public void showMenuOptions() {
         for(Command command: commandMap.values())
         {
-            System.out.println(command.getName()+'\t'+command.getDescription());
+            System.out.println(command.getName()+formatTab(command.getName(), 2)+command.getDescription());
         }
     }
 

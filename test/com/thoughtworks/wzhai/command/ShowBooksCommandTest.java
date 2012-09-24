@@ -32,10 +32,10 @@ public class ShowBooksCommandTest {
         Library library = new Library();
         Command command = new ShowBooksCommand(library);
         command.excute("showbook".split(" "));
-        assertThat(outContent.toString(),is("Code\tName\tLeft\n" +
-                "1\tjava\t3\n" +
-                "2\truby\t3\n" +
-                "3\tc\t3\n" +
-                "4\tlisp\t3\n"));
+        assertThat(outContent.toString(),is("Code\tName\t\tLeft\n" +
+                "1\tjava\t\t3\n" +
+                "2\truby\t\t3\n" +
+                "3\tc\t\t3\n" +
+                "4\tlisp\t\t3\n"));
     }
 }

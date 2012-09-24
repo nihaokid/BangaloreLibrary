@@ -38,10 +38,10 @@ public class LibraryContentTest {
         libraryContent.showMenuOptions();
         assertThat(outContent.toString(),is(
                 "showbooks\tshowbooks a book list of Bangalore Library\n" +
-                        "reserve\treserve book from Bangalore Library\n" +
+                        "reserve\t\treserve book from Bangalore Library\n" +
                         "showmovies\tshowmovies a movie list of Bangalore Library\n"+
-                        "help\tshow usage of command\n" +
-                        "exit\trun exit can exit the application\n"
+                        "help\t\tshow usage of command\n" +
+                        "exit\t\trun exit can exit the application\n"
         ));
     }
 

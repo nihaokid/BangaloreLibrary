@@ -1,5 +1,7 @@
 package com.thoughtworks.wzhai;
 
+import static com.thoughtworks.wzhai.tool.PrintFormat.formatTab;
+
 public class Movie {
     String movieCode;
     String name;
@@ -16,7 +18,7 @@ public class Movie {
     }
     public void print()
     {
-        System.out.println(name+'\t'+year+'\t'+director+'\t'+rating);
+        System.out.println(name+formatTab(name,3)+year+'\t'+director+formatTab(director,3)+rating);
     }
     @Override
     public boolean equals(Object obj) {

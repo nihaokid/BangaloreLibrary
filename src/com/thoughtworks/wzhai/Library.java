@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.thoughtworks.wzhai.tool.PrintFormat.formatTab;
+
 public class Library {
     private Map<String, String> booksName;
     private Map<String, Integer> books;
@@ -32,10 +34,10 @@ public class Library {
 
     public void showBooks()
     {
-        System.out.println("Code\tName\tLeft");
+        System.out.println("Code\tName"+formatTab("Name",2)+"Left");
         for(String bookCode:booksName.keySet())
         {
-            System.out.println(bookCode+'\t'+booksName.get(bookCode)+'\t'+books.get(bookCode));
+            System.out.println(bookCode+'\t'+booksName.get(bookCode)+formatTab(booksName.get(bookCode),2)+books.get(bookCode));
         }
     }
 
@@ -79,7 +81,7 @@ public class Library {
     }
 
     public void showMovieList() {
-        System.out.println("Movie\tYear\tDirector\tRating");
+        System.out.println("Movie"+formatTab("Movie",3)+"Year\tDirector"+formatTab("Director",3)+"Rating");
         for(Movie movie:movies.values())
         {
             movie.print();

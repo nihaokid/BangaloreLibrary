@@ -32,11 +32,11 @@ public class LibraryTest {
     public void testShowBooks() throws Exception {
         Library library = new Library();
         library.showBooks();
-        assertThat(outContent.toString(), is("Code\tName\tLeft\n" +
-                "1\tjava\t3\n" +
-                "2\truby\t3\n" +
-                "3\tc\t3\n" +
-                "4\tlisp\t3\n"));
+        assertThat(outContent.toString(), is("Code\tName\t\tLeft\n" +
+                "1\tjava\t\t3\n" +
+                "2\truby\t\t3\n" +
+                "3\tc\t\t3\n" +
+                "4\tlisp\t\t3\n"));
     }
 
     @Test
@@ -59,14 +59,14 @@ public class LibraryTest {
     {
         Library library = new Library();
         library.showMovieList();
-        assertThat(outContent.toString(),is("Movie\tYear\tDirector\tRating\n"+
-                "Hobbit 3\t2014\tPeter Jackson\tN/A\n"+
-                "Jack Ryan\t2013\tKenneth Branagh\tN/A\n"+
-                "TED 2\t2014\tSeth MacFarlane\tN/A\n"+
-                "Safe Haven\t2013\tLasse Hallstrom\tN/A\n"+
-                "Frozen\t2013\tChris Buck\tN/A\n"+
-                "Amazing Spider-Man 3\t2016\tMarc Webb\tN/A\n"+
-                "Hummingbird\t2013\tSteven Knight\tN/A\n"
+        assertThat(outContent.toString(),is("Movie\t\t\tYear\tDirector\t\tRating\n"+
+                "Hobbit 3\t\t2014\tPeter Jackson\t\tN/A\n"+
+                "Jack Ryan\t\t2013\tKenneth Branagh\t\tN/A\n"+
+                "TED 2\t\t\t2014\tSeth MacFarlane\t\tN/A\n"+
+                "Safe Haven\t\t2013\tLasse Hallstrom\t\tN/A\n"+
+                "Frozen\t\t\t2013\tChris Buck\t\tN/A\n"+
+                "Amazing Spider-Man 3\t2016\tMarc Webb\t\tN/A\n"+
+                "Hummingbird\t\t2013\tSteven Knight\t\tN/A\n"
                 ));
     }
 
