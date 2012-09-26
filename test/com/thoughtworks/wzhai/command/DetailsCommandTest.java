@@ -1,6 +1,6 @@
 package com.thoughtworks.wzhai.command;
 
-import com.thoughtworks.wzhai.Library;
+import com.thoughtworks.wzhai.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,11 +9,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ShowBooksCommandTest {
-    ByteArrayOutputStream outContent;
+public class DetailsCommandTest {
+    public ByteArrayOutputStream outContent;
 
     @Before
     public void redirectSystemStream() {
@@ -29,13 +29,8 @@ public class ShowBooksCommandTest {
 
     @Test
     public void testExcute() throws Exception {
-        Library library = new Library();
-        Command command = new ShowBooksCommand(library);
-        command.excute("showbook".split(" "),null);
-        assertThat(outContent.toString(),is("Code\tName\t\tLeft\n" +
-                "1\tjava\t\t3\n" +
-                "2\truby\t\t3\n" +
-                "3\tc\t\t3\n" +
-                "4\tlisp\t\t3\n"));
+        DetailsCommand detailsCommand = new DetailsCommand();
+        detailsCommand.excute("details".split(" "),new User("zhang 3","zhang@gmail.com","13112344321"));
+        assertThat(outContent.toString(),is("Name: zhang 3\nEmail: zhang@gmail.com\nNum: 13112344321\n"));
     }
 }

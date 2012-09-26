@@ -1,6 +1,7 @@
 package com.thoughtworks.wzhai.command;
 
 import com.thoughtworks.wzhai.LibraryContext;
+import com.thoughtworks.wzhai.User;
 
 import java.util.Map;
 
@@ -12,10 +13,10 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void excute(String[] command) {
+    public void excute(String[] command,User user) {
         if(command.length == 1)
         {
-            libraryContent.showMenuOptions();
+            libraryContent.showMenuOptions(user);
             return;
         }
         Map<String,Command> commands = libraryContent.getCommands();
@@ -32,6 +33,11 @@ public class HelpCommand extends Command {
     @Override
     public String getDescription() {
         return "show usage of command";
+    }
+
+    @Override
+    public boolean needToLogin() {
+        return false;
     }
 
     @Override

@@ -14,6 +14,7 @@ public class LibraryContext {
     private Library library;
     private Map<String,Command> commandMap;
     private BufferedReader bufferRead;
+    private User currentUser = null;
 
     public LibraryContext()
     {
@@ -27,9 +28,13 @@ public class LibraryContext {
         System.out.println("Welcome guys!!!");
     }
 
-    public void showMenuOptions() {
+    public void showMenuOptions(User user) {
         for(Command command: commandMap.values())
         {
+            if(command.needToLogin() && user == null)
+            {
+                continue;
+            }
             System.out.println(command.getName()+formatTab(command.getName(), 2)+command.getDescription());
         }
     }
@@ -40,7 +45,7 @@ public class LibraryContext {
 
     public void play() throws IOException {
         showWelcomeMessage();
-        showMenuOptions();
+        showMenuOptions(currentUser);
         while(true)
         {
             runCommand();
@@ -50,19 +55,23 @@ public class LibraryContext {
     private void initCommands()
     {
         addCommand(new ShowBooksCommand(library));
-        addCommand(new ReserveBookCommand(library));
         addCommand(new ShowMoviesCommand(library));
+        addCommand(new ReserveBookCommand(library));
+        addCommand(new DetailsCommand());
+        addCommand(new LoginCommand(library,this));
+        addCommand(new LogoutCommand(this));
         addCommand(new HelpCommand(this));
         addCommand(new ExitCommand());
     }
 
     private void runCommand() throws IOException {
-        System.out.print("Library->");
+        System.out.print(commandPrompting());
         String command = bufferRead.readLine();
         String[] commands = command.split(" ");
-        if(commandMap.containsKey(commands[0]))
+        if(commandMap.containsKey(commands[0]) &&
+                (!commandMap.get(commands[0]).needToLogin() || currentUser != null))
         {
-            commandMap.get(commands[0]).excute(commands);
+            commandMap.get(commands[0]).excute(commands,currentUser);
         }
         else
         {
@@ -70,9 +79,25 @@ public class LibraryContext {
         }
     }
 
+    private String commandPrompting()
+    {
+        if(currentUser == null)
+            return "Library->";
+
+        return currentUser.getId()+"->";
+    }
+
     private void addCommand(Command command)
     {
         commandMap.put(command.getName(), command);
+    }
+
+    public void logout() {
+        this.currentUser = null;
+    }
+
+    public void login(User user) {
+        this.currentUser = user;
     }
 
     public static void main(String[] asd) throws IOException {

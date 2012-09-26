@@ -10,10 +10,20 @@ public class Library {
     private Map<String, String> booksName;
     private Map<String, Integer> books;
     private Map<String,Movie> movies;
+    private Map<String, User> users;
 
     public Library() {
         initBooks();
         initMovies();
+        initUsers();
+    }
+
+    private void initUsers() {
+        users = new HashMap<String, User>();
+        User user1 = new User("name1", "email1", "num1");
+        User user2 = new User("name2", "email2", "num2");
+        users.put(user1.getId(),user1);
+        users.put(user2.getId(),user2);
     }
 
     public boolean reserveBook(String bookCode) {
@@ -37,7 +47,15 @@ public class Library {
         System.out.println("Code\tName"+formatTab("Name",2)+"Left");
         for(String bookCode:booksName.keySet())
         {
-            System.out.println(bookCode+'\t'+booksName.get(bookCode)+formatTab(booksName.get(bookCode),2)+books.get(bookCode));
+            System.out.println(bookCode + '\t' + booksName.get(bookCode) + formatTab(booksName.get(bookCode), 2) + books.get(bookCode));
+        }
+    }
+
+    public void showMovieList() {
+        System.out.println("Movie"+formatTab("Movie",3)+"Year\tDirector"+formatTab("Director",3)+"Rating");
+        for(Movie movie:movies.values())
+        {
+            movie.print();
         }
     }
 
@@ -51,7 +69,7 @@ public class Library {
 
         for(String bookCode:booksName.keySet())
         {
-            books.put(bookCode,3);
+            books.put(bookCode, 3);
         }
     }
 
@@ -73,18 +91,14 @@ public class Library {
         movies.put(movie6.getMovieCode(),movie6);
         movies.put(movie7.getMovieCode(),movie7);
     }
-
     private int movieCode = 1;
+
     private String generateMovieCode()
     {
         return String.valueOf(movieCode++);
     }
 
-    public void showMovieList() {
-        System.out.println("Movie"+formatTab("Movie",3)+"Year\tDirector"+formatTab("Director",3)+"Rating");
-        for(Movie movie:movies.values())
-        {
-            movie.print();
-        }
+    public User getUser(String userId) {
+        return users.get(userId);
     }
 }

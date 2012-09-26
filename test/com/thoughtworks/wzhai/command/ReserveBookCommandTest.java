@@ -1,6 +1,7 @@
 package com.thoughtworks.wzhai.command;
 
 import com.thoughtworks.wzhai.Library;
+import com.thoughtworks.wzhai.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +16,7 @@ import static org.junit.Assert.assertThat;
 public class ReserveBookCommandTest {
 
     ByteArrayOutputStream outContent;
+    User user = new User("name", "email", "num");
 
     @Before
     public void redirectSystemStream() {
@@ -32,7 +34,7 @@ public class ReserveBookCommandTest {
     public void testExcuteWithNoBookCode() throws Exception {
         Library library = new Library();
         Command command = new ReserveBookCommand(library);
-        command.excute("reserve".split(" "));
+        command.excute("reserve".split(" "),user);
         assertThat(outContent.toString(), is("reserve <bookcode1> <bookcode2>...   ---will reserve those books---\n"));
     }
 
@@ -40,7 +42,7 @@ public class ReserveBookCommandTest {
     public void testExcuteWithCorrectBookCode() throws Exception {
         Library library = new Library();
         Command command = new ReserveBookCommand(library);
-        command.excute("reserve 1".split(" "));
+        command.excute("reserve 1".split(" "),user);
         assertThat(outContent.toString(), is("Thank You! Enjoy the book of java\n"));
     }
 
@@ -48,7 +50,7 @@ public class ReserveBookCommandTest {
     public void testExcuteWithWrongBookCode() throws Exception {
         Library library = new Library();
         Command command = new ReserveBookCommand(library);
-        command.excute("reserve 6".split(" "));
+        command.excute("reserve 6".split(" "),user);
         assertThat(outContent.toString(), is("Sorry we don't have that book yet.\n"));
     }
 }

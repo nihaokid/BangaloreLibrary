@@ -1,6 +1,7 @@
 package com.thoughtworks.wzhai.command;
 
 import com.thoughtworks.wzhai.Library;
+import com.thoughtworks.wzhai.User;
 
 public class ShowBooksCommand extends Command{
 
@@ -13,13 +14,18 @@ public class ShowBooksCommand extends Command{
     }
 
     @Override
-    public void excute(String[] command) {
+    public void excute(String[] command,User user) {
         library.showBooks();
     }
 
     @Override
     public String getDescription() {
         return "showbooks a book list of Bangalore Library";
+    }
+
+    @Override
+    public boolean needToLogin() {
+        return false;
     }
 
     @Override

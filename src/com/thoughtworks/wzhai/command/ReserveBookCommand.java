@@ -1,6 +1,7 @@
 package com.thoughtworks.wzhai.command;
 
 import com.thoughtworks.wzhai.Library;
+import com.thoughtworks.wzhai.User;
 
 public class ReserveBookCommand extends Command
 {
@@ -13,7 +14,7 @@ public class ReserveBookCommand extends Command
     }
 
     @Override
-    public void excute(String[] command) {
+    public void excute(String[] command,User user) {
         if(command.length == 1)
         {
             System.out.println(getUsage());
@@ -21,7 +22,7 @@ public class ReserveBookCommand extends Command
         }
         for(int i=1; i< command.length ;i++)
         {
-            reserveBook(command[i]);
+            reserveBook(command[i],user);
         }
     }
 
@@ -31,14 +32,20 @@ public class ReserveBookCommand extends Command
     }
 
     @Override
+    public boolean needToLogin() {
+        return true;
+    }
+
+    @Override
     public String getUsage() {
         return "reserve <bookcode1> <bookcode2>...   ---will reserve those books---";
     }
 
-    private void reserveBook(String bookCode)
+    private void reserveBook(String bookCode,User user)
     {
         if(library.reserveBook(bookCode))
         {
+            user.reserveBook(bookCode);
             System.out.println("Thank You! Enjoy the book of "+library.getBookName(bookCode));
         }
         else
