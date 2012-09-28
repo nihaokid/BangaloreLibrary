@@ -9,12 +9,13 @@ public class DetailsCommand extends Command {
         super("details");
     }
     @Override
-    public void excute(String[] command, User user) {
+    public Action excute(String[] command, User user) {
         if(user == null)
-            return;
+            return Action.Ok;
         LogForLibrary.getInstance().bodyMessage("Name: "+user.getName());
         LogForLibrary.getInstance().bodyMessage("Email: "+user.getEmail());
         LogForLibrary.getInstance().bodyMessage("Num: "+user.getNum());
+        return Action.Ok;
     }
 
     @Override

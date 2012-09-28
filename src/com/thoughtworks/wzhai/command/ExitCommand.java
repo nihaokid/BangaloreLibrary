@@ -8,8 +8,8 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void excute(String[] command,User user) {
-        System.exit(0);
+    public Action excute(String[] command,User user) {
+        return Action.Exit;
     }
 
     @Override

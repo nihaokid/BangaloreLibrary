@@ -18,11 +18,11 @@ public class LoginCommand extends Command {
         this.libraryContext = libraryContext;
     }
     @Override
-    public void excute(String[] command,User u) {
+    public Action excute(String[] command,User u) {
         if(u != null)
         {
             LogForLibrary.getInstance().bodyMessage(u.getId()+" already login");
-            return;
+            return Action.Ok;
         }
 
         LogForLibrary.getInstance().bodyMessage("please input the user name.");
@@ -40,7 +40,7 @@ public class LoginCommand extends Command {
         } else {
             LogForLibrary.getInstance().bodyMessage("no such user!");
         }
-
+        return Action.Ok;
     }
 
     @Override

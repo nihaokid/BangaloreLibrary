@@ -70,7 +70,7 @@ public class LibraryContext {
         if(commandMap.containsKey(commands[0]) &&
                 (!commandMap.get(commands[0]).needToLogin() || currentUser != null))
         {
-            commandMap.get(commands[0]).excute(commands,currentUser);
+            commandMap.get(commands[0]).excute(commands,currentUser).run();
         }
         else
         {

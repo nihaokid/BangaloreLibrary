@@ -5,7 +5,7 @@ import com.thoughtworks.wzhai.User;
 public abstract class Command {
     private String name;
 
-    public abstract void excute(String[] command,User user);
+    public abstract Action excute(String[] command,User user);
 
     public abstract String getDescription();
 

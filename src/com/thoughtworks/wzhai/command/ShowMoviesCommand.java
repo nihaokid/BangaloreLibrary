@@ -12,8 +12,9 @@ public class ShowMoviesCommand extends Command {
         this.library = library;
     }
     @Override
-    public void excute(String[] command,User user) {
+    public Action excute(String[] command,User user) {
         library.showMovieList();
+        return Action.Ok;
     }
 
     @Override

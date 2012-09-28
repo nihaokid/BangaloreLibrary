@@ -14,11 +14,11 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void excute(String[] command,User user) {
+    public Action excute(String[] command,User user) {
         if(command.length == 1)
         {
             libraryContent.showMenuOptions(user);
-            return;
+            return Action.Ok;
         }
         Map<String,Command> commands = libraryContent.getCommands();
         if(commands.containsKey(command[1]))
@@ -29,6 +29,7 @@ public class HelpCommand extends Command {
         {
             LogForLibrary.getInstance().error("No such command --"+command[1]);
         }
+        return Action.Ok;
     }
 
     @Override

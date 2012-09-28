@@ -4,6 +4,8 @@ import com.thoughtworks.wzhai.Library;
 import com.thoughtworks.wzhai.User;
 import com.thoughtworks.wzhai.tool.LogForLibrary;
 
+import java.rmi.activation.ActivationID;
+
 public class ReserveBookCommand extends Command
 {
 
@@ -15,16 +17,17 @@ public class ReserveBookCommand extends Command
     }
 
     @Override
-    public void excute(String[] command,User user) {
+    public Action excute(String[] command,User user) {
         if(command.length == 1)
         {
             LogForLibrary.getInstance().bodyMessage(getUsage());
-            return;
+            return Action.Ok;
         }
         for(int i=1; i< command.length ;i++)
         {
             reserveBook(command[i],user);
         }
+        return Action.Ok;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class ReserveBookCommand extends Command
         if(library.reserveBook(bookCode))
         {
             user.reserveBook(bookCode);
-            LogForLibrary.getInstance().bodyMessage("Thank You! Enjoy the book of "+library.getBookName(bookCode));
+            LogForLibrary.getInstance().bodyMessage("Thank You! Enjoy the book of " + library.getBookName(bookCode));
         }
         else
         {

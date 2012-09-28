@@ -14,8 +14,9 @@ public class ShowBooksCommand extends Command{
     }
 
     @Override
-    public void excute(String[] command,User user) {
+    public Action excute(String[] command,User user) {
         library.showBooks();
+        return Action.Ok;
     }
 
     @Override
