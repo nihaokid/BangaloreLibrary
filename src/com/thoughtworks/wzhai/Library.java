@@ -49,12 +49,12 @@ public class Library {
         LogForLibrary.getInstance().headMessage("Code\tName" + formatTab("Name", 2) + "Left");
         for(String bookCode:booksName.keySet())
         {
-            LogForLibrary.getInstance().bodyMessage(bookCode + '\t' + booksName.get(bookCode) + formatTab(booksName.get(bookCode), 2) + books.get(bookCode));
+            LogForLibrary.getInstance().bodyMessageLn(bookCode + '\t' + booksName.get(bookCode) + formatTab(booksName.get(bookCode), 2) + books.get(bookCode));
         }
     }
 
     public void showMovieList() {
-        LogForLibrary.getInstance().headMessage("Movie"+formatTab("Movie",3)+"Year\tDirector"+formatTab("Director",3)+"Rating");
+        LogForLibrary.getInstance().headMessage("Movie" + formatTab("Movie", 3) + "Year\tDirector" + formatTab("Director", 3) + "Rating");
         for(Movie movie:movies.values())
         {
             movie.print();

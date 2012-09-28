@@ -12,9 +12,9 @@ public class DetailsCommand extends Command {
     public Action excute(String[] command, User user) {
         if(user == null)
             return Action.Ok;
-        LogForLibrary.getInstance().bodyMessage("Name: "+user.getName());
-        LogForLibrary.getInstance().bodyMessage("Email: "+user.getEmail());
-        LogForLibrary.getInstance().bodyMessage("Num: "+user.getNum());
+        LogForLibrary.getInstance().bodyMessageLn("Name: " + user.getName());
+        LogForLibrary.getInstance().bodyMessageLn("Email: " + user.getEmail());
+        LogForLibrary.getInstance().bodyMessageLn("Num: " + user.getNum());
         return Action.Ok;
     }
 

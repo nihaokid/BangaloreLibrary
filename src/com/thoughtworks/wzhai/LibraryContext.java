@@ -3,9 +3,7 @@ package com.thoughtworks.wzhai;
 import com.thoughtworks.wzhai.command.*;
 import com.thoughtworks.wzhai.tool.LogForLibrary;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -34,7 +32,7 @@ public class LibraryContext {
             {
                 continue;
             }
-            LogForLibrary.getInstance().bodyMessage(command.getName()+formatTab(command.getName(), 2)+command.getDescription());
+            LogForLibrary.getInstance().bodyMessageLn(command.getName() + formatTab(command.getName(), 2) + command.getDescription());
         }
     }
 
@@ -64,7 +62,7 @@ public class LibraryContext {
     }
 
     private void runCommand() throws IOException {
-        LogForLibrary.getInstance().headMessage(commandPrompting());
+        LogForLibrary.getInstance().bodyMessage(commandPrompting());
         String command = LogForLibrary.getInstance().readLine();
         String[] commands = command.split(" ");
         if(commandMap.containsKey(commands[0]) &&

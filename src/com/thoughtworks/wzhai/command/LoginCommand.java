@@ -5,8 +5,6 @@ import com.thoughtworks.wzhai.LibraryContext;
 import com.thoughtworks.wzhai.User;
 import com.thoughtworks.wzhai.tool.LogForLibrary;
 
-import java.io.IOException;
-
 public class LoginCommand extends Command {
 
     private Library library;
@@ -21,24 +19,24 @@ public class LoginCommand extends Command {
     public Action excute(String[] command,User u) {
         if(u != null)
         {
-            LogForLibrary.getInstance().bodyMessage(u.getId()+" already login");
+            LogForLibrary.getInstance().bodyMessageLn(u.getId() + " already login");
             return Action.Ok;
         }
 
-        LogForLibrary.getInstance().bodyMessage("please input the user name.");
+        LogForLibrary.getInstance().bodyMessageLn("please input the user name.");
         User user = null;
 
         user = library.getUser(LogForLibrary.getInstance().readLine());
         if (user != null) {
-            LogForLibrary.getInstance().bodyMessage("please input the password.");
+            LogForLibrary.getInstance().bodyMessageLn("please input the password.");
             if (user.authenticated(LogForLibrary.getInstance().readLine())) {
                 libraryContext.login(user);
-                LogForLibrary.getInstance().bodyMessage("login success");
+                LogForLibrary.getInstance().bodyMessageLn("login success");
             } else {
-                LogForLibrary.getInstance().bodyMessage("password wrong!");
+                LogForLibrary.getInstance().bodyMessageLn("password wrong!");
             }
         } else {
-            LogForLibrary.getInstance().bodyMessage("no such user!");
+            LogForLibrary.getInstance().bodyMessageLn("no such user!");
         }
         return Action.Ok;
     }

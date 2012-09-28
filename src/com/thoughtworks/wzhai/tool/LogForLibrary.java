@@ -32,9 +32,14 @@ public class LogForLibrary {
         System.out.println(message);
     }
 
-    public void bodyMessage(String message)
+    public void bodyMessageLn(String message)
     {
         System.out.println(message);
+    }
+
+    public void bodyMessage(String message)
+    {
+        System.out.print(message);
     }
 
     public void error(String error)

@@ -23,11 +23,11 @@ public class HelpCommand extends Command {
         Map<String,Command> commands = libraryContent.getCommands();
         if(commands.containsKey(command[1]))
         {
-            LogForLibrary.getInstance().bodyMessage(commands.get(command[1]).getUsage());
+            LogForLibrary.getInstance().bodyMessageLn(commands.get(command[1]).getUsage());
         }
         else
         {
-            LogForLibrary.getInstance().error("No such command --"+command[1]);
+            LogForLibrary.getInstance().error("No such command --" + command[1]);
         }
         return Action.Ok;
     }

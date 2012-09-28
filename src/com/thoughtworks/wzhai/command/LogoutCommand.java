@@ -15,7 +15,7 @@ public class LogoutCommand extends Command {
     @Override
     public Action excute(String[] command, User user) {
         libraryContext.logout();
-        LogForLibrary.getInstance().bodyMessage(user.getId()+" logout success.");
+        LogForLibrary.getInstance().bodyMessageLn(user.getId() + " logout success.");
         return Action.Ok;
     }
 

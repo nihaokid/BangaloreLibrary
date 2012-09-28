@@ -20,7 +20,7 @@ public class Movie {
     }
     public void print()
     {
-        LogForLibrary.getInstance().bodyMessage(name+formatTab(name,3)+year+'\t'+director+formatTab(director,3)+rating);
+        LogForLibrary.getInstance().bodyMessageLn(name + formatTab(name, 3) + year + '\t' + director + formatTab(director, 3) + rating);
     }
     @Override
     public boolean equals(Object obj) {
