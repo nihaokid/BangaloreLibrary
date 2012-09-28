@@ -2,6 +2,7 @@ package com.thoughtworks.wzhai.command;
 
 import com.thoughtworks.wzhai.LibraryContext;
 import com.thoughtworks.wzhai.User;
+import com.thoughtworks.wzhai.tool.LogForLibrary;
 
 public class LogoutCommand extends Command {
     private LibraryContext libraryContext;
@@ -14,7 +15,7 @@ public class LogoutCommand extends Command {
     @Override
     public void excute(String[] command, User user) {
         libraryContext.logout();
-        System.out.println(user.getId()+" logout success.");
+        LogForLibrary.getInstance().bodyMessage(user.getId()+" logout success.");
     }
 
     @Override

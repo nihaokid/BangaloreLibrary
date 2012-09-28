@@ -2,6 +2,7 @@ package com.thoughtworks.wzhai.command;
 
 import com.thoughtworks.wzhai.Library;
 import com.thoughtworks.wzhai.User;
+import com.thoughtworks.wzhai.tool.LogForLibrary;
 
 public class ReserveBookCommand extends Command
 {
@@ -17,7 +18,7 @@ public class ReserveBookCommand extends Command
     public void excute(String[] command,User user) {
         if(command.length == 1)
         {
-            System.out.println(getUsage());
+            LogForLibrary.getInstance().bodyMessage(getUsage());
             return;
         }
         for(int i=1; i< command.length ;i++)
@@ -46,11 +47,11 @@ public class ReserveBookCommand extends Command
         if(library.reserveBook(bookCode))
         {
             user.reserveBook(bookCode);
-            System.out.println("Thank You! Enjoy the book of "+library.getBookName(bookCode));
+            LogForLibrary.getInstance().bodyMessage("Thank You! Enjoy the book of "+library.getBookName(bookCode));
         }
         else
         {
-            System.out.println("Sorry we don't have that book yet.");
+            LogForLibrary.getInstance().bodyMessage("Sorry we don't have that book yet.");
         }
     }
 }

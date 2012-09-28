@@ -1,6 +1,7 @@
 package com.thoughtworks.wzhai.command;
 
 import com.thoughtworks.wzhai.User;
+import com.thoughtworks.wzhai.tool.LogForLibrary;
 
 public class DetailsCommand extends Command {
     public DetailsCommand()
@@ -11,9 +12,9 @@ public class DetailsCommand extends Command {
     public void excute(String[] command, User user) {
         if(user == null)
             return;
-        System.out.println("Name: "+user.getName());
-        System.out.println("Email: "+user.getEmail());
-        System.out.println("Num: "+user.getNum());
+        LogForLibrary.getInstance().bodyMessage("Name: "+user.getName());
+        LogForLibrary.getInstance().bodyMessage("Email: "+user.getEmail());
+        LogForLibrary.getInstance().bodyMessage("Num: "+user.getNum());
     }
 
     @Override

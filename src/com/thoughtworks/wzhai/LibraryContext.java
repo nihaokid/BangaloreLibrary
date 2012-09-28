@@ -1,6 +1,7 @@
 package com.thoughtworks.wzhai;
 
 import com.thoughtworks.wzhai.command.*;
+import com.thoughtworks.wzhai.tool.LogForLibrary;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +14,6 @@ import static com.thoughtworks.wzhai.tool.PrintFormat.formatTab;
 public class LibraryContext {
     private Library library;
     private Map<String,Command> commandMap;
-    private BufferedReader bufferRead;
     private User currentUser = null;
 
     public LibraryContext()
@@ -21,11 +21,10 @@ public class LibraryContext {
         library = new Library();
         commandMap = new LinkedHashMap<String,Command>();
         initCommands();
-        bufferRead = new BufferedReader(new InputStreamReader(System.in));
     }
 
     public void showWelcomeMessage() {
-        System.out.println("Welcome guys!!!");
+        LogForLibrary.getInstance().headMessage("Welcome guys!!!");
     }
 
     public void showMenuOptions(User user) {
@@ -35,7 +34,7 @@ public class LibraryContext {
             {
                 continue;
             }
-            System.out.println(command.getName()+formatTab(command.getName(), 2)+command.getDescription());
+            LogForLibrary.getInstance().bodyMessage(command.getName()+formatTab(command.getName(), 2)+command.getDescription());
         }
     }
 
@@ -65,8 +64,8 @@ public class LibraryContext {
     }
 
     private void runCommand() throws IOException {
-        System.out.print(commandPrompting());
-        String command = bufferRead.readLine();
+        LogForLibrary.getInstance().headMessage(commandPrompting());
+        String command = LogForLibrary.getInstance().readLine();
         String[] commands = command.split(" ");
         if(commandMap.containsKey(commands[0]) &&
                 (!commandMap.get(commands[0]).needToLogin() || currentUser != null))
@@ -75,7 +74,7 @@ public class LibraryContext {
         }
         else
         {
-            System.out.println("Select a valid command!!");
+            LogForLibrary.getInstance().error("Select a valid command!!");
         }
     }
 
